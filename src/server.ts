@@ -1,15 +1,14 @@
 import express from "express";
 
+import "./database/"; // Cria conexão
+import { routes } from "./routes";
+
 const app = express();
+
+app.use(express.json());
 
 const port = 4444;
 
-app.get("/", (request, response) => {
-  return response.json({ message: "olá nlw 05" });
-});
-
-app.post("/", (request, response) => {
-  return response.json({ message: "criado com sucesso" });
-});
+app.use(routes);
 
 app.listen(port, () => console.log(`Server is running on port ${port}`));
